@@ -14,6 +14,7 @@ public class ConnectionInfo {
 	private boolean hide;
 	private Map<String, PropertyContents> propertyList;
 	private Map<String, String> optionalParam;
+	private boolean warning = false;
 	
 	public String getHost() {
 		return host;
@@ -56,5 +57,11 @@ public class ConnectionInfo {
 	}
 	public void setOptionalParam(Map<String, String> optionalParam) {
 		this.optionalParam = optionalParam;
+	}
+	public boolean isWarning() {
+		return warning;
+	}
+	public void setWarning(boolean warning) {
+		this.warning = warning;
 	}
 }
