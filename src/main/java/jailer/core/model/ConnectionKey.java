@@ -39,6 +39,7 @@ public class ConnectionKey extends DataSourceKey{
 
 	@Override
 	public String toString() {
-		return "ConnectionKey [connectionId=" + connectionId + "]";
+		return "ConnectionKey [connectionId=" + connectionId + ", toString()="
+				+ super.toString() + "]";
 	}
 }

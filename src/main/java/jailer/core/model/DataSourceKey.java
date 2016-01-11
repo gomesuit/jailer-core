@@ -39,7 +39,8 @@ public class DataSourceKey extends GroupKey{
 
 	@Override
 	public String toString() {
-		return "DataSourceKey [dataSourceId=" + dataSourceId + "]";
+		return "DataSourceKey [dataSourceId=" + dataSourceId + ", toString()="
+				+ super.toString() + "]";
 	}
 	
 }
