@@ -5,11 +5,20 @@ import java.util.Map;
 
 public class JailerDataSource {
 	private String dataSourceId;
+	private String driverName;
 	private String url;
 	private boolean hide;
 	private Map<String, PropertyContents> propertyList = new HashMap<>();
 	private String uuid;
 	
+	public String getDriverName() {
+		return driverName;
+	}
+
+	public void setDriverName(String driverName) {
+		this.driverName = driverName;
+	}
+
 	public void addProperty(String key, PropertyContents contents){
 		propertyList.put(key, contents);
 	}
