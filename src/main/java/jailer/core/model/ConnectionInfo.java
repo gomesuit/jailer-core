@@ -10,6 +10,7 @@ public class ConnectionInfo {
 	private String host;
 	private String ipAddress;
 	private Date sinceConnectTime;
+	private String driverName;
 	private String connectUrl;
 	private boolean hide;
 	private Map<String, PropertyContents> propertyList;
@@ -27,6 +28,12 @@ public class ConnectionInfo {
 	}
 	public void setSinceConnectTime(Date sinceConnectTime) {
 		this.sinceConnectTime = sinceConnectTime;
+	}
+	public String getDriverName() {
+		return driverName;
+	}
+	public void setDriverName(String driverName) {
+		this.driverName = driverName;
 	}
 	public String getConnectUrl() {
 		return connectUrl;
@@ -63,5 +70,14 @@ public class ConnectionInfo {
 	}
 	public void setWarning(boolean warning) {
 		this.warning = warning;
+	}
+	
+	@Override
+	public String toString() {
+		return "ConnectionInfo [host=" + host + ", ipAddress=" + ipAddress
+				+ ", sinceConnectTime=" + sinceConnectTime + ", driverName="
+				+ driverName + ", connectUrl=" + connectUrl
+				+ ", optionalParam=" + optionalParam + ", warning=" + warning
+				+ "]";
 	}
 }
