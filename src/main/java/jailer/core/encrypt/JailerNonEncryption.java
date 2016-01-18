@@ -1,18 +1,16 @@
-package jailer.core;
+package jailer.core.encrypt;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
-import org.apache.commons.codec.binary.Base64;
-
-public class JailerEncryptionImpl implements JailerEncryption{
+public class JailerNonEncryption implements JailerEncryption{
 	private static final Charset charset = StandardCharsets.UTF_8;
 
 	@Override
 	public byte[] encode(String str) {
 		if(str == null) return null;
 		
-		byte[] encodedBytes = Base64.encodeBase64(str.getBytes(charset));
+		byte[] encodedBytes = str.getBytes(charset);
 		return encodedBytes;
 	}
 
@@ -20,8 +18,7 @@ public class JailerEncryptionImpl implements JailerEncryption{
 	public String decoded(byte[] src) {
 		if(src == null) return null;
 		
-		byte[] decodedBytes = Base64.decodeBase64(src);
-		return new String(decodedBytes, charset);
+		return new String(src, charset);
 	}
 
 }

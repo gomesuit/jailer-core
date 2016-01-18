@@ -1,4 +1,4 @@
-package jailer.core;
+package jailer.core.encrypt;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;

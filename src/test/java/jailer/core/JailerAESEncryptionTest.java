@@ -1,6 +1,8 @@
 package jailer.core;
 
 import static org.junit.Assert.*;
+import jailer.core.encrypt.JailerAESEncryption;
+import jailer.core.encrypt.JailerEncryption;
 
 import org.junit.Test;
 
