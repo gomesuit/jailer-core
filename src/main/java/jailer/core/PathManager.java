@@ -34,20 +34,20 @@ public class PathManager {
 		return appendPath(getGroupPath(key), key.getDataSourceId());
 	}
 	
-	public static String getDataSourcePath(String dataSourceId){
-		return appendPath(getRootPath(), dataSourceId);
+	public static String getDataSourceCorrentPath(DataSourceKey key){
+		return appendPath(getDataSourcePath(key), "Current");
+	}
+	
+	public static String getDataSourcePlanPath(DataSourceKey key){
+		return appendPath(getDataSourcePath(key), "Plan");
 	}
 	
 	private static String appendPath(String srcPath, String node){
 		return srcPath + "/" + node;
 	}
 	
-	public static String getConnectionPath(String dataSourceId, String connectionId){
-		return appendPath(getDataSourcePath(dataSourceId), connectionId);
-	}
-	
 	public static String getConnectionPath(ConnectionKey key){
-		return appendPath(getDataSourcePath(key), key.getConnectionId());
+		return appendPath(getDataSourceCorrentPath(key), key.getConnectionId());
 	}
 	
 	public static String getUuidPath(String uuid){
