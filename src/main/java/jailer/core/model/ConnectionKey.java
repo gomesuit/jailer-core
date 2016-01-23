@@ -2,6 +2,15 @@ package jailer.core.model;
 
 public class ConnectionKey extends DataSourceKey{
 	private String connectionId;
+	
+	public ConnectionKey(){}
+	
+	public ConnectionKey(DataSourceKey key, String connectionId){
+		this.setServiceId(key.getServiceId());
+		this.setGroupId(key.getGroupId());
+		this.setDataSourceId(key.getDataSourceId());
+		this.setConnectionId(connectionId);
+	}
 
 	public String getConnectionId() {
 		return connectionId;
