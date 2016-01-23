@@ -9,7 +9,7 @@ public class JailerEncryptionImpl implements JailerEncryption{
 	private static final Charset charset = StandardCharsets.UTF_8;
 
 	@Override
-	public byte[] encode(String str) {
+	public byte[] encrypt(String str) {
 		if(str == null) return null;
 		
 		byte[] encodedBytes = Base64.encodeBase64(str.getBytes(charset));
@@ -17,7 +17,7 @@ public class JailerEncryptionImpl implements JailerEncryption{
 	}
 
 	@Override
-	public String decoded(byte[] src) {
+	public String decrypt(byte[] src) {
 		if(src == null) return null;
 		
 		byte[] decodedBytes = Base64.decodeBase64(src);

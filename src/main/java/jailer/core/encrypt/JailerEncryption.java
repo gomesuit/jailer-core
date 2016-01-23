@@ -1,6 +1,6 @@
 package jailer.core.encrypt;
 
 public interface JailerEncryption {
-	public byte[] encode(String src) throws Exception;
-	public String decoded(byte[] src) throws Exception;
+	public byte[] encrypt(String src) throws JailerEncryptException;
+	public String decrypt(byte[] src) throws JailerEncryptException;
 }

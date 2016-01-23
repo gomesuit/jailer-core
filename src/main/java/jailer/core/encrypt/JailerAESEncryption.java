@@ -16,64 +16,73 @@ public class JailerAESEncryption implements JailerEncryption{
 	private static final String ALGORITHM = "AES";
 
 	@Override
-	public byte[] encode(String str) throws Exception{
+	public byte[] encrypt(String str) throws JailerEncryptException{
 		if(str == null) return null;
 		
-		// 文字列をバイト配列へ変換
-		byte[] byteText = str.getBytes("UTF-8");
+		try{
+			// 文字列をバイト配列へ変換
+			byte[] byteText = str.getBytes("UTF-8");
 
-		// 暗号化キーと初期化ベクトルをバイト配列へ変換
-		byte[] byteKey = ENCRYPT_KEY.getBytes("UTF-8");
-		byte[] byteIv = ENCRYPT_IV.getBytes("UTF-8");
+			// 暗号化キーと初期化ベクトルをバイト配列へ変換
+			byte[] byteKey = ENCRYPT_KEY.getBytes("UTF-8");
+			byte[] byteIv = ENCRYPT_IV.getBytes("UTF-8");
 
-		// 暗号化キーと初期化ベクトルのオブジェクト生成
-		SecretKeySpec key = new SecretKeySpec(byteKey, ALGORITHM);
-		IvParameterSpec iv = new IvParameterSpec(byteIv);
+			// 暗号化キーと初期化ベクトルのオブジェクト生成
+			SecretKeySpec key = new SecretKeySpec(byteKey, ALGORITHM);
+			IvParameterSpec iv = new IvParameterSpec(byteIv);
 
-		// Cipherオブジェクト生成
-		Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+			// Cipherオブジェクト生成
+			Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
 
-		// Cipherオブジェクトの初期化
-		cipher.init(Cipher.ENCRYPT_MODE, key, iv);
+			// Cipherオブジェクトの初期化
+			cipher.init(Cipher.ENCRYPT_MODE, key, iv);
 
-		// 暗号化の結果格納
-		byte[] byteResult = cipher.doFinal(byteText);
+			// 暗号化の結果格納
+			byte[] byteResult = cipher.doFinal(byteText);
 
-		// Base64へエンコード
-		String strResult = Base64.encodeBase64String(byteResult);
-		
-		byte[] encodedBytes = strResult.getBytes(charset);
-		return encodedBytes;
+			// Base64へエンコード
+			String strResult = Base64.encodeBase64String(byteResult);
+			
+			byte[] encodedBytes = strResult.getBytes(charset);
+			return encodedBytes;
+			
+		}catch(Exception e){
+			throw new JailerEncryptException(e);
+		}
 	}
 
 	@Override
-	public String decoded(byte[] src) throws Exception{
+	public String decrypt(byte[] src) throws JailerEncryptException{
 		if(src == null) return null;
 
-		// Base64をデコード
-		byte[] byteText = Base64.decodeBase64(src);
+		try{
+			// Base64をデコード
+			byte[] byteText = Base64.decodeBase64(src);
 
-		// 暗号化キーと初期化ベクトルをバイト配列へ変換
-		byte[] byteKey = ENCRYPT_KEY.getBytes("UTF-8");
-		byte[] byteIv = ENCRYPT_IV.getBytes("UTF-8");
+			// 暗号化キーと初期化ベクトルをバイト配列へ変換
+			byte[] byteKey = ENCRYPT_KEY.getBytes("UTF-8");
+			byte[] byteIv = ENCRYPT_IV.getBytes("UTF-8");
 
-		// 復号化キーと初期化ベクトルのオブジェクト生成
-		SecretKeySpec key = new SecretKeySpec(byteKey, "AES");
-		IvParameterSpec iv = new IvParameterSpec(byteIv);
+			// 復号化キーと初期化ベクトルのオブジェクト生成
+			SecretKeySpec key = new SecretKeySpec(byteKey, "AES");
+			IvParameterSpec iv = new IvParameterSpec(byteIv);
 
-		// Cipherオブジェクト生成
-		Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+			// Cipherオブジェクト生成
+			Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
 
-		// Cipherオブジェクトの初期化
-		cipher.init(Cipher.DECRYPT_MODE, key, iv);
+			// Cipherオブジェクトの初期化
+			cipher.init(Cipher.DECRYPT_MODE, key, iv);
 
-		// 復号化の結果格納
-		byte[] byteResult = cipher.doFinal(byteText);
+			// 復号化の結果格納
+			byte[] byteResult = cipher.doFinal(byteText);
 
-		// バイト配列を文字列へ変換
-		String strResult = new String(byteResult, charset);
-		
-		return strResult;
+			// バイト配列を文字列へ変換
+			String strResult = new String(byteResult, charset);
+			
+			return strResult;
+		}catch(Exception e){
+			throw new JailerEncryptException(e);
+		}
 	}
 
 }

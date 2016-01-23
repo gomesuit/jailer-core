@@ -12,6 +12,6 @@ public class JailerAESEncryptionTest {
 	public void test() throws Exception {
 		String str = "TESTTESTTEST";
 		JailerEncryption encryption = new JailerAESEncryption();
-		assertEquals(str, encryption.decoded(encryption.encode(str)));
+		assertEquals(str, encryption.decrypt(encryption.encrypt(str)));
 	}
 }
