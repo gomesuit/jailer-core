@@ -34,7 +34,7 @@ public class PathManager {
 		return appendPath(getGroupPath(key), key.getDataSourceId());
 	}
 	
-	public static String getDataSourceCorrentPath(DataSourceKey key){
+	public static String getDataSourceCurrentPath(DataSourceKey key){
 		return appendPath(getDataSourcePath(key), "Current");
 	}
 	
@@ -47,7 +47,7 @@ public class PathManager {
 	}
 	
 	public static String getConnectionPath(ConnectionKey key){
-		return appendPath(getDataSourceCorrentPath(key), key.getConnectionId());
+		return appendPath(getDataSourceCurrentPath(key), key.getConnectionId());
 	}
 	
 	public static String getUuidPath(String uuid){
